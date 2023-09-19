@@ -1,3 +1,25 @@
+# MIT License
+#
+# Copyright (c) 2023 Chip Lukes
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 import numpy as np
 import cv2
 from mss import mss
@@ -5,15 +27,14 @@ from PIL import Image
 import pyautogui
 import time
 
-
-##### Bobber Color Mask, uncomment one of the mask groups below
+# Bobber Color Mask
 # This can change depeding on fishing location, texture packs, etc.
 # If you need to figure out a new mask you can take a screenshot of the bobber and then use hsv_thresh.py to figure out the HSV thresholds.
 # the hsv colorspace works well for filtering a specific color in a large range of brightness.
 # however, red exists on both ends of the hue spectrum, so 2 different masks are needed.
 # https://stackoverflow.com/questions/10948589/choosing-the-correct-upper-and-lower-hsv-boundaries-for-color-detection-withcv
 
-# Tested on Java + Optifine
+# Tested on Java + Optifine, Bedrock
 hue_lhs_lower_red = np.array([0,100,100])
 hue_lhs_upper_red = np.array([5,255,255])
 hue_rhs_lower_red = np.array([165,100,100])
@@ -25,23 +46,18 @@ hue_rhs_upper_red = np.array([180,255,255])
 # hue_rhs_lower_red = np.array([165,100,100])
 # hue_rhs_upper_red = np.array([180,255,255])
 
-# # TODO: Tested on Bedrock
-# hue_lhs_lower_red = np.array([0,100,100])
-# hue_lhs_upper_red = np.array([5,255,255])
-# hue_rhs_lower_red = np.array([165,100,100])
-# hue_rhs_upper_red = np.array([180,255,255])
-
-
 # Establish coordinates for a window around area where bobber will be
-input(f"Move mouse pointer to upper left coordinate of a window where bobber is expected, then press enter>")
+print(f"Define rectangle around bobber to watch.")
+input(f"\nMove mouse pointer to upper left of bobber.\nPress enter>")
 bobber_ul_x, bobber_ul_y = pyautogui.position() # Get the XY position of the mouse.
-input(f"Move mouse pointer to lower right coordinate of a window where bobber is expected, then press enter>")
-bobber_lr_x, bobber_lr_y = pyautogui.position() # Get the XY position of the mouse.
-input(f"Move mouse where you want to cast (crosshairs if you have already cast) then press enter>")
+input(f"\nMove mouse pointer to lower right of bobber.\nPress enter>")
+bobber_lr_x, bobber_lr_y = pyautogui.position() # Get the XY position of the mouse
+input(f"Move mouse where you want to cast.\n(Ie.crosshairs if you have already cast).\nPress enter>")
 bobber_x, bobber_y = pyautogui.position() # Get the XY position of the mouse.
 
 # Establish location for bobber view window
-input(f"Move mouse pointer to upper left coordinate where you would like the bobber view window located (somewhere next to the minecraft window), then press enter button>")
+print(f"\nChoose location of bobber view window.")
+input(f"(somewhere next to the minecraft window).\nPress enter button>")
 window_x, window_y = pyautogui.position() # Get the XY position of the mouse.
 bobwin = "Bobber window"
 cv2.namedWindow(bobwin)        # Create a named window
@@ -50,8 +66,8 @@ window_w = bobber_lr_x - bobber_ul_x
 window_h = bobber_lr_y - bobber_ul_y
 monitor = {'top': bobber_ul_y, 'left': bobber_ul_x, 'width': window_w, 'height': window_h}
 
-print(f"You have ten seconds to get your fishing set up.  After auto fishing starts, you can cancel fishing pressing escape key and then moving mouse pointer onto bobber view window")
-time.sleep(10)
+print(f"You have 5 seconds to get your fishing set up!\nAfter auto fishing starts, cancel fishing pressing by:\n1) press escape key.\n2)quickly move mouse pointer onto bobber view window.")
+time.sleep(5)
 
 sct = mss()
 bobber_down_cnt = 0
