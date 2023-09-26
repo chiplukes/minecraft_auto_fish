@@ -32,7 +32,7 @@ import pyautogui
 DEBUG = False
 
 # Bobber Color Mask
-# This can change depeding on fishing location, texture packs, etc.
+# This can change depending on fishing location, texture packs, etc.
 # If you need to figure out a new mask you can take a screenshot of the bobber and then use hsv_thresh.py to figure out the HSV thresholds.
 # the hsv colorspace works well for filtering a specific color in a large range of brightness.
 # however, red exists on both ends of the hue spectrum, so 2 different masks are needed.
@@ -91,7 +91,7 @@ while 1:
     mask_hue_rhs = cv2.inRange(img_hsv, hue_rhs_lower_red, hue_rhs_upper_red)
     mask = mask_hue_lhs + mask_hue_rhs # join masks
     result = cv2.bitwise_and(img_hsv, img_hsv, mask = mask)
-    img_filt = result # this shoule only have red part of the bobber shown and nothing else
+    img_filt = result # this should only have red part of the bobber shown and nothing else
 
     # when bobber goes under most/all of red goes away
     sum_pix = img_filt.sum()
