@@ -49,7 +49,7 @@ Finally, you will be given 5 seconds to click the back to game button and cast t
 
 After the 5 seconds you should see the red part of the bobber show up in the bobber view window.  This is a live view of what the python script is seeing.  Whenever the red goes away, it performs a mouse click.
 
-![](animation.gif)
+![](Animation.gif)
 
 # FAQ
 
