@@ -1,7 +1,8 @@
 python3 -m venv .venv
-sh ./.venv/bin/activate
+source ./.venv/bin/activate
 
-python3 -m pip install -e pyautogui
-python3 -m pip install -e pillow
-python3 -m pip install -e opencv-python
-python3 -m pip install -e mss
+python -m pip install pyautogui
+python -m pip install pillow
+python -m pip install opencv-python
+python -m pip install mss
+python -m pip install numpy

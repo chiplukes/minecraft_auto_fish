@@ -22,6 +22,12 @@ This Python script automatically fishes for you on Minecraft.  It does this by w
 
 * for convenience, you can edit the autofish.bat file with the correct path for where you placed py_auto_fish on your pc. Then right click and make a shortcut and copy this to your desktop.
 
+* if Windows does not allow you to run powershell scripts (activating the python virtual environment) you may need to change the execution policy using a Admin Powershell
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
 # Usage
 
 First, you should find or create a nice safe place to fish if you plan on being AFK :)  I like to build a walled in area, with leaves on top of the walls so that mobs do not spawn on top
@@ -88,6 +94,9 @@ Thus, two masks are required to adequately filter for red.
 
 If you need to figure out a new mask you can take a screenshot of the bobber and then use hsv_thresh.py script to figure out the HSV thresholds.
 
+# TODO
+
+* Update this pip install dependencies instead of using batch files.
 
 # License
 
